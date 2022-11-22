@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="506235aa-aa46-4b67-ba55-0be037732c56" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/PracticaFuncional-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/PracticaFuncional-build.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sbt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
+    <list default="true" id="506235aa-aa46-4b67-ba55-0be037732c56" name="Changes" comment="freq fet i nonstopfreq a fer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Simil.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Simil.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/Simil$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/Simil$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scala-2.13/classes/Simil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/scala-2.13/classes/Simil.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +81,18 @@
       <workItem from="1667912025233" duration="24000" />
       <workItem from="1668552630242" duration="807000" />
       <workItem from="1669052258436" duration="12000" />
+      <workItem from="1669052316662" duration="262000" />
+      <workItem from="1669115803350" duration="2432000" />
+      <workItem from="1669118423027" duration="4265000" />
     </task>
+    <task id="LOCAL-00001" summary="freq fet i nonstopfreq a fer">
+      <created>1669052473330</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669052473330</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,6 +109,10 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="freq fet i nonstopfreq a fer" />
+    <option name="LAST_COMMIT_MESSAGE" value="freq fet i nonstopfreq a fer" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -108,13 +122,13 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Simil.scala</url>
-          <line>37</line>
+          <line>53</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/Simil.scala</url>
-          <line>18</line>
-          <option name="timeStamp" value="8" />
+          <line>57</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
