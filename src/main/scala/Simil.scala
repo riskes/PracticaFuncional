@@ -3,10 +3,12 @@ import scala.collection.MapView
 object Simil extends App {
 import scala.io.Source
   import scala.collection.mutable.ListBuffer
-  def main(): Unit ={
+
+  def main(): List[(String, Int)] = {
     //ubitext = scala.io.StdIn.readLine();
     val text: String = Source.fromFile("C:\\Users\\arisq\\Downloads\\Practica Funcional + Objectes (1a. part)-20221024\\pg11.txt").mkString
-    freq(text)
+    nonstopfreq(text)
+
   }
 
   def splitWords(llibre: String): Array[String] = {
@@ -23,12 +25,12 @@ import scala.io.Source
     for(x <- 0 to llistaparaules.length-1){
       ocurrencies = (llistaparaules(x), 1) :: ocurrencies
     }
-    val prova = ocurrencies.groupBy(_._1).map{ _._2.reduce({ (a,b) => (a._1, a._2+b._2)})}.toList.sortBy(_._2).reverse
+    val prova: List[(String, Int)] = ocurrencies.groupBy(_._1).map{ _._2.reduce({ (a,b) => (a._1, a._2+b._2)})}.toList.sortBy(_._2).reverse
     print("ey")
     return prova
   }
 
-  def nonstopfreq(llibre: String) : List[(String, Int)] ={
+  def nonstopfreq(llibre: String) : List[(String, Int)] = {
 
     //ubitext = scala.io.StdIn.readLine();
     val text: String = Source.fromFile("C:\\Users\\arisq\\Downloads\\Practica Funcional + Objectes (1a. part)-20221024\\english-stop.txt").mkString
@@ -37,20 +39,24 @@ import scala.io.Source
     val llistaparaules: Array[String] = splitWords(llibre)
 
     for (x <- 0 to llistaparaules.length - 1) {
-      if(textSplit.contains(llistaparaules(x))){
-      }else{
+      if (textSplit.contains(llistaparaules(x))) {
+      } else {
+        ocurrencies = (llistaparaules(x), 1) :: ocurrencies
+      }
     }
-    val prova = ocurrencies.groupBy(_._1).map {
-      _._2.reduce({ (a, b) => (a._1, a._2 + b._2) })
-    }.toList.sortBy(_._2)
+      val prova: List[(String, Int)] = ocurrencies.groupBy(_._1).map {
+        _._2.reduce({ (a, b) => (a._1, a._2 + b._2) })
+      }.toList.sortBy(_._2).reverse
 
-    println("Num de Paraules: " + llistaparaules.length + "  Diferents: " + prova.length)
-    println("Paraules             ocurrencies             frequencia")
-    println("---------------------------------------------------------")
-    for(x <- 0 to 9){
-      println(prova(x)._1 +"      "+prova(x)._2)
-    }
-    return prova
+      println("Num de Paraules: " + ocurrencies.length + "  Diferents: " + prova.length)
+      println("Paraules             ocurrencies             frequencia")
+      println("---------------------------------------------------------")
+      for (x <- 0 to 9) {
+        val frequencia = ((prova(x)._2*100).toDouble/ocurrencies.length)
+        println(prova(x)._1 + "      " + prova(x)._2 + "      " + f"$frequencia%1.2f")
+      }
+      return prova
+
   }
   def paraulafreqfreq(Llibre: String) {
     val frequens = freq(Llibre).groupBy(_._2).mapValues(_.size).toList.sortBy(_._2).reverse
@@ -90,4 +96,4 @@ import scala.io.Source
     println("hola")
   }
 main()
-}
+};
