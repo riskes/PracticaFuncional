@@ -1,21 +1,27 @@
+import scala.collection.MapView
+
 object Simil extends App {
 import scala.io.Source
   import scala.collection.mutable.ListBuffer
   def main(): Unit ={
     //ubitext = scala.io.StdIn.readLine();
     val text: String = Source.fromFile("C:\\Users\\arisq\\Downloads\\Practica Funcional + Objectes (1a. part)-20221024\\pg11.txt").mkString
-    paraulafreqfreq(text)
+    ngrama(2,text)
+  }
+
+  def splitWords(llibre: String): Array[String] = {
+    val llistaparaules: String = llibre.replaceAll("[',\\n\\t\\r.1234567890=¬//€~#@|&%\\]\\[$¡¿{}+!ªº*\\():;\"!?_-]", " ");
+    val llistaparaules1: String = llistaparaules.replaceAll("( +)", " ");
+    return llistaparaules1.toLowerCase().split(" ").filter(_.nonEmpty);
   }
   def freq(llibre: String): List[(String, Int)] ={
 
     print("dintre funcio")
     var ocurrencies: List[(String,Int)]= List();
-    val llistaparaules: String = llibre.replaceAll("[',\\n\\t\\r.1234567890=¬€~#@|&%$¡¿{}+!ªº*\\():;\"!?_-]"," ");
-    val llistaparaules1: String= llistaparaules.replaceAll("(  )"," ");
-    val llistaparaules2: Array[String] = llistaparaules1.toLowerCase().split(" ").filter(_.nonEmpty);
+    val llistaparaules: Array[String] = splitWords(llibre);
 
-    for(x <- 0 to llistaparaules2.length-1){
-      ocurrencies = (llistaparaules2(x), 1) :: ocurrencies;
+    for(x <- 0 to llistaparaules.length-1){
+      ocurrencies = (llistaparaules(x), 1) :: ocurrencies;
     }
     val prova = ocurrencies.groupBy(_._1).map{ _._2.reduce({ (a,b) => (a._1, a._2+b._2)})}.toList.sortBy(_._2).reverse;
 
@@ -25,26 +31,22 @@ import scala.io.Source
   def nonstopfreq(llibre: String) : List[(String, Int)] ={
 
     //ubitext = scala.io.StdIn.readLine();
-    val text: String = Source.fromFile("C:\\Users\\arisq\\Downloads\\Practica Funcional + Objectes (1a. part)-20221024\\english-stop.txt").mkString.replaceAll("\\n"," ");
-    val textSplit: Array[String] = text.toLowerCase().split(" ")
+    val text: String = Source.fromFile("C:\\Users\\arisq\\Downloads\\Practica Funcional + Objectes (1a. part)-20221024\\english-stop.txt").mkString
+    val textSplit: Array[String] = splitWords(text);
     var ocurrencies: List[(String, Int)] = List();
-    var ocurrencies2: List[(String, Int)] = List();
-    val llistaparaules: String = llibre.replaceAll("[,\\n\\t\\r.1234567890=¬€~#@|&%$¡¿{}+!'ªº*\\():;\"!?_-]", " ");
+    val llistaparaules: Array[String] = splitWords(llibre);
 
-    val llistaparaules1: String = llistaparaules.replaceAll("(  )", " ");
-    val llistaparaules2: Array[String] = llistaparaules1.toLowerCase().split(" ").filter(_.nonEmpty);
-
-    for (x <- 0 to llistaparaules2.length - 1) {
-      if(textSplit.contains(llistaparaules2(x))){
+    for (x <- 0 to llistaparaules.length - 1) {
+      if(textSplit.contains(llistaparaules(x))){
       }else{
-        ocurrencies = (llistaparaules2(x), 1) :: ocurrencies;
+        ocurrencies = (llistaparaules(x), 1) :: ocurrencies;
       }
     }
     val prova = ocurrencies.groupBy(_._1).map {
       _._2.reduce({ (a, b) => (a._1, a._2 + b._2) })
     }.toList.sortBy(_._2).reverse;
 
-    println("Num de Paraules: " + llistaparaules2.length + "  Diferents: " + prova.length)
+    println("Num de Paraules: " + llistaparaules.length + "  Diferents: " + prova.length)
     println("Paraules             ocurrencies             frequencia")
     println("---------------------------------------------------------")
     for(x <- 0 to 9){
@@ -64,6 +66,30 @@ import scala.io.Source
       println(menysfrequens(x)._2 + " paraules apareixen " + menysfrequens(x)._1 + " vegades");
     }
     return frequens;
+  }
+  def ngrama(n: Int, llibre: String): Unit ={
+    print("dintre funcio")
+    var ocurrencies: List[(String, Int)] = List();
+
+    val llistaparaules2: List[Array[String]] = splitWords(llibre).sliding(3).toList
+
+    val ngramWithCount = llistaparaules2.groupBy(identity).mapValues(_.size)
+
+    val sumIndex = ngramWithCount.groupBy { case (k, v) => k.take(n - 1) }
+
+    val ngramWithProbabilityFaster = ngramWithCount.map { case (k, v) =>
+      (k, v.toDouble / sumIndex(k.take(n - 1)))
+    }
+    //val sumIndex = ngramWithCount.groupBy { case (k, v) => k.take(n - 1) }.mapValues(_.values.sum)
+    //val ngramWithProbabilityFaster = ngramWithCount.map { case (k, v) => (k, v.toDouble / sumIndex(k.take(n - 1))) }
+    //val sumIndex: MapView[Array[String], Int] = llistaparaules2.groupBy { case (k, v) => k.take(n - 1) }.mapValues(_.)
+    println("gdas")
+    /*val ngramWithProbabilityFaster = llistaparaules2.map { case (k, v) =>
+      (k, v.toDouble / sumIndex(k.take(n - 1)))
+    }*/
+    //val llistaparaules2: Iterator[Array[String]] = llistaparaules1.split(" ").sliding(2).filter(_.nonEmpty)
+
+    println("hola")
   }
 main()
 }
