@@ -6,11 +6,11 @@ import scala.io.Source
   def main(): Unit ={
     //ubitext = scala.io.StdIn.readLine();
     val text: String = Source.fromFile("C:\\Users\\arisq\\Downloads\\Practica Funcional + Objectes (1a. part)-20221024\\pg11.txt").mkString
-    ngrama(2,text)
+    freq(text)
   }
 
   def splitWords(llibre: String): Array[String] = {
-    val llistaparaules: String = llibre.replaceAll("[',\\n\\t\\r.1234567890=¬//€~#@|&%\\]\\[$¡¿{}+!ªº*\\():;\"!?_-]", " ");
+    val llistaparaules: String = llibre.replaceAll("[\\W\\r\\n\\t\\d_]", " ");
     val llistaparaules1: String = llistaparaules.replaceAll("( +)", " ");
     return llistaparaules1.toLowerCase().split(" ").filter(_.nonEmpty);
   }
@@ -23,8 +23,8 @@ import scala.io.Source
     for(x <- 0 to llistaparaules.length-1){
       ocurrencies = (llistaparaules(x), 1) :: ocurrencies;
     }
-    val prova = ocurrencies.groupBy(_._1).map{ _._2.reduce({ (a,b) => (a._1, a._2+b._2)})}.toList.sortBy(_._2).reverse;
-
+    val prova = ocurrencies.groupBy(_._1).map{ _._2.reduce({ (a,b) => (a._1, a._2+b._2)})}.toList.sortBy(_._2).reverse
+    print("ey")
     return prova;
   }
 
@@ -44,7 +44,7 @@ import scala.io.Source
     }
     val prova = ocurrencies.groupBy(_._1).map {
       _._2.reduce({ (a, b) => (a._1, a._2 + b._2) })
-    }.toList.sortBy(_._2).reverse;
+    }.toList.sortBy(_._2);
 
     println("Num de Paraules: " + llistaparaules.length + "  Diferents: " + prova.length)
     println("Paraules             ocurrencies             frequencia")
@@ -77,9 +77,9 @@ import scala.io.Source
 
     val sumIndex = ngramWithCount.groupBy { case (k, v) => k.take(n - 1) }
 
-    val ngramWithProbabilityFaster = ngramWithCount.map { case (k, v) =>
+    /*val ngramWithProbabilityFaster = ngramWithCount.map { case (k, v) =>
       (k, v.toDouble / sumIndex(k.take(n - 1)))
-    }
+    }*/
     //val sumIndex = ngramWithCount.groupBy { case (k, v) => k.take(n - 1) }.mapValues(_.values.sum)
     //val ngramWithProbabilityFaster = ngramWithCount.map { case (k, v) => (k, v.toDouble / sumIndex(k.take(n - 1))) }
     //val sumIndex: MapView[Array[String], Int] = llistaparaules2.groupBy { case (k, v) => k.take(n - 1) }.mapValues(_.)
